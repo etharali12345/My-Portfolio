@@ -17,14 +17,19 @@ export default function About() {
   const contentRef = useRef<HTMLDivElement>(null);
   const turbRef = useRef<SVGFETurbulenceElement>(null);
   const dispRef = useRef<SVGFEDisplacementMapElement>(null);
-  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+  const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
+  const isTablet = useMediaQuery({ query: "(min-width: 768px)" });
+  const device = isDesktop ? "desktop" : isTablet ? "tablet" : "mobile";
 
   const [ripples, setRipples] = useState<
     { id: number; x: number; y: number }[]
   >([]);
 
-  const xaxis = isMobile ? 50 : 70;
-  const yaxis = isMobile ? 85 : 75;
+  const rippleAxis = {
+    desktop: { x: 45, y: 70 },
+    tablet: { x: 50, y: 60 },
+    mobile: { x: 50, y: 50 },
+  };
 
   useEffect(() => {
     if (!wave || wave < 1) return;
@@ -57,7 +62,10 @@ export default function About() {
     raf = requestAnimationFrame(tick);
 
     if (wave === 1)
-      setRipples((r) => [...r, { id: Date.now(), x: xaxis, y: yaxis }]);
+      setRipples((r) => [
+        ...r,
+        { id: Date.now(), x: rippleAxis[device].x, y: rippleAxis[device].y },
+      ]);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -89,7 +97,10 @@ export default function About() {
       </svg>
 
       <SectionHeading title="About me" mb={0} />
-      <div ref={ref} className="relative grid gap-4 md:grid-cols-6 pt-10 pb-20">
+      <div
+        ref={ref}
+        className="relative grid gap-4 md:grid-cols-6 pt-10 pb-20 "
+      >
         <div
           ref={contentRef}
           className="relative md:col-span-4 group box p-7 md:p-9 hover:shadow-glow hover:-translate-y-1.5 transition duration-200"
@@ -145,12 +156,12 @@ export default function About() {
             )}
           </div>
         </div>
-        <div className="h-75 md:hidden" aria-hidden={true} />
+        <div className="h-45 md:hidden" aria-hidden={true} />
         <div
-          className="absolute w-full h-full xl:-top-10 xl:-right-10 pointer-events-none"
+          className="absolute w-full h-full xl:-right-15 md:-right-5 -top-25 pointer-events-none "
           aria-hidden={true}
         >
-          <About3D active={inView} onWaypoint={setWave} />
+          <About3D device={device} active={inView} onWaypoint={setWave} />
         </div>
       </div>
     </section>

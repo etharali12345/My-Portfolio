@@ -16,7 +16,7 @@ export function Butterfly(props) {
 
     const timer = setTimeout(() => {
       action.fadeOut(0.5);
-    }, 7000);
+    }, 7500);
 
     return () => clearTimeout(timer);
   }, [actions, names]);

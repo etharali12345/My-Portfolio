@@ -33,7 +33,7 @@ export default function ButterflyMovement({
     { position: [0.25, 0.05, 3], rotation: [1, 4.5, -0.1] },
   ],
   speed = 2,
-  delay = 0.3,
+  delay = 0.7,
   arriveDistance = 1.4,
   onWaypoint,
 }: Props) {
