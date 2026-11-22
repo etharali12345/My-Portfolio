@@ -9,20 +9,35 @@ export function Butterfly(props) {
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
   const { actions, names } = useAnimations(animations, group);
+  const timer = useRef();
+
+  const flap = (seconds = 3, speed = 1) => {
+    const action = actions[names[0]];
+    if (!action) return;
+    clearTimeout(timer.current);
+    action.reset().setEffectiveTimeScale(speed).fadeIn(0.3).play();
+    timer.current = setTimeout(() => action.fadeOut(0.4), seconds * 1000);
+  };
 
   useEffect(() => {
-    const action = actions[names[0]];
-    action.reset().play();
-
-    const timer = setTimeout(() => {
-      action.fadeOut(0.5);
-    }, 7500);
-
-    return () => clearTimeout(timer);
+    flap(6.5, 1.8);
+    return () => clearTimeout(timer.current);
   }, [actions, names]);
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        flap(1, 2);
+        document.body.style.cursor = "pointer";
+      }}
+      onPointerOut={() => {
+        document.body.style.cursor = "";
+      }}
+    >
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="root">

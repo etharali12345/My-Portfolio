@@ -13,6 +13,7 @@ const words = [
 export default function About() {
   const { ref, inView } = useInView<HTMLDivElement>(0.3);
   const [wave, setWave] = useState<number | null>(null);
+  const [grid, setGrid] = useState<HTMLDivElement | null>(null);
 
   const contentRef = useRef<HTMLDivElement>(null);
   const turbRef = useRef<SVGFETurbulenceElement>(null);
@@ -98,7 +99,10 @@ export default function About() {
 
       <SectionHeading title="About me" mb={0} />
       <div
-        ref={ref}
+        ref={(el) => {
+          ref.current = el;
+          setGrid(el);
+        }}
         className="relative grid gap-4 md:grid-cols-6 pt-10 pb-20 "
       >
         <div
@@ -131,7 +135,7 @@ export default function About() {
           </div>
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]"
+            className="absolute inset-0 overflow-hidden rounded-[inherit]"
           >
             {ripples.map((r) =>
               [0, 0.25, 0.5].map((delay, i) => {
@@ -158,10 +162,15 @@ export default function About() {
         </div>
         <div className="h-45 md:hidden" aria-hidden={true} />
         <div
-          className="absolute w-full h-full xl:-right-15 md:-right-5 -top-25 pointer-events-none "
+          className="pointer-events-none absolute w-full h-full xl:-right-15 md:-right-5 -top-25 "
           aria-hidden={true}
         >
-          <About3D device={device} active={inView} onWaypoint={setWave} />
+          <About3D
+            device={device}
+            active={inView}
+            onWaypoint={setWave}
+            eventSource={grid}
+          />
         </div>
       </div>
     </section>
