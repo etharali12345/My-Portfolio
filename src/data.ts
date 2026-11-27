@@ -1,34 +1,31 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Braces,
-  Cloud,
   Code2,
   Database,
-  CalendarClock,
   Globe,
-  Languages,
   Layers,
   Lock,
-  Network,
-  ScanFace,
-  Search,
+  Box,
   Server,
   Smartphone,
+  Wind,
+  Webhook,
 } from "lucide-react";
 
 export const profile = {
   name: "E",
-  photo: "../../assets/images.jpg",
-  email: "",
-  github: "",
-  linkedin: "",
+  photo: "../../assets/Me.jpg",
+  email: "etharali12345@outlook.com",
+  github: "https://github.com/etharali12345",
+  linkedin: "https://www.linkedin.com/in/ethar-abdelrahman-602a83286/",
 };
 
 export const nav = [
+  { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
-  { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -38,53 +35,46 @@ export interface Skill {
   note?: string;
   placeholder?: boolean;
 }
+
 export const skillGroups: { title: string; span: string; skills: Skill[] }[] = [
   {
     title: "Frontend development",
-    span: "lg:col-span-2",
+    span: "lg:col-span-2 md:col-span-3",
     skills: [
-      { label: "React", icon: Code2 },
-      { label: "Bootstrap", icon: Layers },
-      { label: "Arabic RTL interfaces", icon: Languages },
       { label: "HTML & CSS", icon: Globe },
+      { label: "React", icon: Code2 },
+      { label: "REST APIs", icon: Webhook },
+      { label: "Three.js", icon: Box, note: "WebGL" },
+      { label: "Tailwind", icon: Wind },
+      { label: "Bootstrap", icon: Layers },
     ],
   },
   {
     title: "Backend development",
-    span: "lg:col-span-2",
+    span: "lg:col-span-2  md:col-span-3",
     skills: [
       { label: "Flask", icon: Server },
-      { label: "JWT authentication", icon: Lock },
       { label: "MySQL", icon: Database },
-      { label: "Scheduled jobs", icon: CalendarClock },
-    ],
-  },
-  {
-    title: "Tools & technologies",
-    span: "lg:col-span-2",
-    skills: [
-      { label: "RetinaFace & ArcFace", icon: ScanFace },
-      { label: "FAISS vector search", icon: Search },
-      { label: "Railway & Vercel", icon: Cloud },
-      { label: "UML modelling", icon: Network },
+      { label: "Authen\u00ADtication", icon: Lock, note: "JWT" },
     ],
   },
   {
     title: "Mobile development",
-    span: "lg:col-span-3",
+    span: "lg:col-span-2  md:col-span-3",
     skills: [
-      { label: "React Native", icon: Smartphone, note: "Learning now" },
-      { label: "Flutter", icon: Smartphone, note: "Planned next" },
+      { label: "React Native", icon: Smartphone },
+      { label: "NativeWind", icon: Wind, note: "Tailwind for React Native" },
     ],
   },
+
   {
     title: "Programming languages",
-    span: "lg:col-span-3",
+    span: "lg:col-span-6  md:col-span-3",
     skills: [
-      { label: "Python", icon: Braces },
       { label: "JavaScript", icon: Braces },
-      { label: "SQL", icon: Database },
-      { label: "Add more", icon: Braces, placeholder: true },
+      { label: "Python", icon: Braces },
+      { label: "TypeScript", icon: Braces },
+      { label: "Java", icon: Braces },
     ],
   },
 ];
@@ -104,18 +94,10 @@ export const projects: Project[] = [
     image: "../../assets/project2.jpg",
     description:
       "a full-stack web app that helps families find their missing relatives. It compares faces across missing and found reports. Separate roles for users, authorities, and admins; Arabic RTL interface.",
-    tech: [
-      "React",
-      "Flask",
-      "MySQL",
-      "ML",
-      "CNN",
-      "FAISS",
-      "Railway",
-      "Vercel",
-    ],
+    tech: ["React", "Flask", "MySQL", "ML", "CNN", "FAISS", "ArcFace"],
     preview: true,
-    github: "",
+    github:
+      "https://github.com/etharali12345/Missing-Person-Identification-website",
     demo: "",
   },
   {

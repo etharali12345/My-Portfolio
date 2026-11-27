@@ -7,11 +7,11 @@ export default function Projects() {
   return (
     <section id="projects" className="mx-auto max-w-6xl px-5 py-15">
       <SectionHeading title="Projects">Selected work</SectionHeading>
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2">
         {projects.map((p, i) => (
           <article
             key={i}
-            className="box group flex flex-col overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-glow"
+            className="box group flex flex-col overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-glow  md:max-lg:last:odd:col-span-2 md:max-lg:last:odd:justify-self-center md:max-lg:last:odd:w-[calc(50%-0.5rem)]"
           >
             <div className="h-80 border-b border-line bg-gradient-to-br from-brand-700/20 to-surface overflow-hidden">
               {p.image ? (
@@ -68,14 +68,16 @@ export default function Projects() {
                     <FaGithub size={16} />
                     Code
                   </ExtLink>
-                  <ExtLink
-                    href={p.demo}
-                    label={`${p.name} live demo`}
-                    className="link"
-                  >
-                    <ExternalLink size={16} />
-                    Live demo
-                  </ExtLink>
+                  {p.demo && (
+                    <ExtLink
+                      href={p.demo}
+                      label={`${p.name} live demo`}
+                      className="link"
+                    >
+                      <ExternalLink size={16} />
+                      Live demo
+                    </ExtLink>
+                  )}
                 </div>
               )}
             </div>

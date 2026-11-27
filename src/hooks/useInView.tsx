@@ -13,10 +13,11 @@ export function useInView<T extends HTMLElement>(threshold = 1) {
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.disconnect();
+        } else if (entry.intersectionRatio === 0) {
+          setInView(false);
         }
       },
-      { threshold },
+      { threshold: [0, threshold] },
     );
 
     observer.observe(element);

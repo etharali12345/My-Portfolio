@@ -5,13 +5,8 @@ import { useInView } from "@/hooks/useInView";
 import { useState, useRef, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
-const words = [
-  { text: "test1", icon: "Smartphone" },
-  { text: "try2", icon: "Mail" },
-];
-
 export default function About() {
-  const { ref, inView } = useInView<HTMLDivElement>(0.3);
+  const { ref, inView } = useInView<HTMLDivElement>(0.7);
   const [wave, setWave] = useState<number | null>(null);
   const [grid, setGrid] = useState<HTMLDivElement | null>(null);
 
@@ -97,7 +92,7 @@ export default function About() {
         </filter>
       </svg>
 
-      <SectionHeading title="About me" mb={0} />
+      <SectionHeading title="About Me" mb={0} />
       <div
         ref={(el) => {
           ref.current = el;
@@ -111,28 +106,21 @@ export default function About() {
         >
           <UserRound className="text-brand-400" size={22} aria-hidden="true" />
           <p className="mt-4 leading-relaxed text-muted md:text-lg group-hover:text-fg/75">
-            I’m a recent Information Technology graduate from Sudan University,
-            focused on building clean, user-friendly mobile and web apps. For my
-            graduation project, I built a full-stack, deep-learning-based facial
-            recognition platform that helps reunite missing persons with their
-            families, from the React frontend with a right-to-left Arabic
-            interface to the Flask backend and deployment. With a solid React
-            background, I’m now moving into mobile development with React
-            Native, and I’m open to opportunities in mobile and frontend
-            development. I work comfortably in both Arabic and English.
+            I'm a recent Information Technology graduate who has a passion for
+            building meaningful digital experiences. My primary area of focus is
+            front-end development, where I enjoy turning ideas into functional,
+            intuitive, and user-friendly applications. I work with React,
+            JavaScript, and TypeScript, and I'm currently expanding into mobile
+            development with React Native. I've also worked across the full
+            stack, from the interface to the backend and deployment, so I
+            understand how the different parts of an application fit together.
+            I'm at ease building in both Arabic and English, including
+            right-to-left interfaces, and I care about writing clean, readable,
+            and maintainable code. I'm always looking for opportunities to grow,
+            collaborate, and build projects that combine thoughtful design with
+            practical functionality.
           </p>
-          <div className="flex h-8 overflow-hidden bg-ink mt-10">
-            <p>
-              per
-              <span className="slider">
-                {words.map((word, index) => (
-                  <span key={index} className="bg-raised mb-2">
-                    <span>{word.text}</span>
-                  </span>
-                ))}
-              </span>
-            </p>
-          </div>
+
           <div
             aria-hidden="true"
             className="absolute inset-0 overflow-hidden rounded-[inherit]"

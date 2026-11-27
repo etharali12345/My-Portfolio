@@ -110,7 +110,7 @@ export default function ButterflyMovement({
         penumbra={0.13}
       />
       <group ref={groupRef}>
-        <Butterfly />
+        <Butterfly active={active} />
       </group>
     </>
   );

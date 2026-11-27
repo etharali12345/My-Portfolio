@@ -20,9 +20,9 @@ export function Butterfly(props) {
   };
 
   useEffect(() => {
-    flap(6.5, 1.8);
+    flap(5.5, 1.8);
     return () => clearTimeout(timer.current);
-  }, [actions, names]);
+  }, [actions, names, props.active]);
 
   return (
     <group

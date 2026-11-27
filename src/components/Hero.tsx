@@ -5,7 +5,7 @@ import { ExtLink } from "../hooks/ui";
 
 export default function Hero() {
   return (
-    <section id="top" className="mx-auto max-w-6xl px-5 pb-10 pt-28 md:pt-32">
+    <section id="home" className="mx-auto max-w-6xl px-5 pb-10 pt-28 md:pt-32">
       <div className="grid gap-4 md:grid-cols-6">
         <div
           className="box rise relative overflow-hidden p-7 md:p-10 md:col-span-4"
@@ -60,13 +60,13 @@ export default function Hero() {
         </div>
 
         <div
-          className="box rise overflow-hidden md:col-span-2 rounded-4xl md:h-0 h-120 min-h-full"
+          className="box rise overflow-hidden md:col-span-2 rounded-4xl md:h-0 min-h-full h-120 "
           style={{ "--i": 1 } as React.CSSProperties}
         >
           <img
             src={profile.photo}
             alt={`Portrait of ${profile.name}`}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover md:object-[35%_30%] sm:object-[50%_30%]"
           />
         </div>
       </div>
